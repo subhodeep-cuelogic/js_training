@@ -769,3 +769,1156 @@ var orangeCost = function (orangePrice) {
 
 
 console.log("Total cost for 5 oranges = " + orangeCost(5));
+
+/*
+Return keyword
+Nice job! Now, when we call a function, we don't always want to just print stuff. Sometimes, we just want it to return a value. We can then use that value (ie. the output from the function) in other code. Let's learn about the return keyword, then we'll see how to use functions with an if / else statement in the next exercise!
+
+The return keyword simply gives the programmer back the value that comes out of the function. So the function runs, and when the return keyword is used, the function will immediately stop running and return the value.
+
+Instructions
+In our example we have a function called timesTwo() that takes in a number and returns the number multiplied by two.
+
+On line 7, after the equals sign, call the function timesTwo with any parameter you want
+Line 8 prints out newNumber. Notice how the value we return from timesTwo() is automatically assigned into newNumber.
+*/
+
+// Parameter is a number, and we do math with that parameter
+var timesTwo = function(number) {
+    return number * 2;
+};
+
+// Call timesTwo here!
+var newNumber = timesTwo(4)
+console.log(newNumber);
+
+/*
+Functions, return and if / else
+When we call a function, its return value is just the result from running the function. That value can then be used just like any other value in JavaScript!
+
+Look at the if statement starting on line 7. The if statement is checking whether the result of calling the function named quarter is divisible by 3.
+
+Instructions
+Define a function called quarter which has a parameter called number.
+This function returns a value equal to one quarter of the parameter. (i.e. number / 4;)
+Call the function inside the if statement's condition (and put in a parameter value!) such that "The statement is true" is printed to the console.
+*/
+
+// Define quarter here.
+var quarter = function (number) {
+  var result = number / 4;
+  return result;
+};
+
+
+
+
+if (quarter(12) % 3 === 0 ) {
+  console.log("The statement is true");
+} else {
+  console.log("The statement is false");
+}
+
+
+/*
+Functions with two parameters
+So far we've only looked at functions with one parameter. But often it is useful to write functions with more than one parameter. For example, we can have the following function:
+
+var areaBox = function(length, width) {
+    return length * width;
+};
+With more than one parameter, we can create more useful functions
+
+To call a function with more than one parameter, just enter a value for each parameter in the parentheses. For example, areaBox(3,9); would return the area of a box with a length of 3 and a width of 9.
+
+Instructions
+Write a function called perimeterBox that returns the perimeter of a rectangle.
+It should have two parameters.
+One formula for perimeter is length + length + width + width;
+Call the function and pass in any value for length and width you like.
+*/
+
+// Write your function starting on line 3
+
+var perimeterBox = function(length,breadth) {
+        return 2*(length + breadth);
+};
+
+var areaRectangle = perimeterBox(20,25);
+console.log(areaRectangle);
+
+
+/*
+Global vs Local Variables
+Let's talk about an important concept: scope. Scope can be global or local.
+
+Variables defined outside a function are accessible anywhere once they have been declared. They are called global variables and their scope is global.
+
+For example:
+
+var globalVar = "hello";
+
+var foo = function() {
+    console.log(globalVar);  // prints "hello"
+}
+The variable globalVar can be accessed anywhere, even inside the function foo.
+
+Variables defined inside a function are local variables. They cannot be accessed outside of that function.
+
+For example:
+
+var bar = function() {
+    var localVar = "howdy";
+}
+
+console.log(localVar);  // error
+The variable localVar only exists inside the function bar. Trying to print localVar outside the function gives a error.
+
+Check out the code in the editor. Until now you've been using the var keyword without really understanding why. The var keyword creates a new variable in the current scope. That means if var is used outside a function, that variable has a global scope. If var is used inside a function, that variable has a local scope.
+
+On line 4 we have not used the var keyword, so when we log my_number to the console outside of the function, it will be 14.
+
+Instructions
+Change line 4 to use the var keyword. Notice that the value of my_number in the function is now 14 and outside the function is 7.
+
+Using my_number without the var keyword refers to the global variable that has already been declared outside the function in line 1. However, if you use the var keyword inside a function, it declares a new local variable that only exists within that function.
+*/
+
+var my_number = 7; //this has global scope
+
+var timesTwo = function(number) {
+    my_number = number * 2;
+    console.log("Inside the function my_number is: ");
+    console.log(my_number);
+}; 
+
+timesTwo(7);
+
+console.log("Outside the function my_number is: ")
+console.log(my_number);
+
+var my_number = 7; //this has global scope
+
+var timesTwo = function(number) {
+    var my_number = number * 2;
+    console.log("Inside the function my_number is: ");
+    console.log(my_number);
+}; 
+
+timesTwo(7);
+
+console.log("Outside the function my_number is: ")
+console.log(my_number);
+
+/*
+Functions recap
+Okay let's review. You have learned a lot about functions today. We better not forget it all!
+
+We first discovered how to use functions to perform the same piece of logic repeatedly, without having to type the same code again. This saves you time!
+
+Instructions
+Write a function called nameString()
+It should take name as a parameter.
+The function returns a string equal to "Hi, I am" + " " + name.
+Call nameString() by passing it your name, and use console.log to print the output.
+*/
+
+var nameString = function (name) {
+    return "Hi, I am" + " " + name;	
+	
+};
+
+console.log(nameString("Subhodeep Majumder"));
+
+/*
+The Game
+Rock paper scissors is a classic 2 player game. Each player chooses either rock, paper or scissors. The possible outcomes:
+
+Rock destroys scissors.
+Scissors cut paper.
+Paper covers rock.
+Our code will break the game into 3 phases:
+a. User makes a choice
+b. Computer makes a choice
+c. A compare function will determine who wins
+
+User Choice
+We start by first asking the user which option they want to pick. We will later use this choice in the compare function to determine the winner.
+
+Instructions
+Declare a variable called userChoice.
+Make the variable equal to the answer we get by asking the user "Do you choose rock, paper or scissors?"
+?
+
+Computer Choice: Part 1
+Awesome! We now need the computer to make a choice. The game is only going to be fun if the computer chooses randomly. Luckily JavaScript has something that can help with this.
+
+If we declare a variable and make it equal to Math.random(), that variable will equal a number between 0 and 1.
+
+Instructions
+Under your previous code, declare a variable called computerChoice and make it equal to Math.random().
+Print out computerChoice so you can see how Math.random() works. This step isn't needed for the game - just useful for learning!
+
+Computer Choice: Part 2
+We have computerChoice but it now equals a random number between 0 and 1. We need to somehow translate this random number into a random choice of rock, paper, or scissors. How do we do this?!
+
+If computerChoice is between 0 and 0.33, make computerChoice equal to "rock".
+If computerChoice is between 0.34 and 0.66, make computerChoice equal to "paper".
+If computerChoice is between 0.67 and 1, make computerChoice equal to "scissors".
+But there are three outcomes! Using if / else only lets us have two outcomes. What now?! We need to use if / else if / else. See the hint for the full syntax. You will laugh at how easy it is.
+
+Instructions
+Under your existing code, write out the if / else if / else statement.
+In the respective code blocks, change the value of computerChoice based on the rules stated above. Remember, you do NOT have to use var when changing the value of a variable that already exists.
+
+*/
+
+var userChoice = prompt("Do you choose rock, paper or scissors?");
+var computerChoice = Math.random();
+if ( computerChoice >= 0 ) && ( computerChoice <= 0.33 ) {
+    computerChoice = "rock";
+}
+else if ( computerChoice >= 0.34 ) && ( computerChoice <= 0.66 ) {
+    computerChoice = "paper";
+}
+else {
+    computerChoice = "scissors";
+}
+
+
+var userChoice = prompt("Do you choose rock, paper or scissors?");
+var computerChoice = Math.random();
+if (computerChoice < 0.34) {
+	computerChoice = "rock";
+} else if(computerChoice <= 0.67) {
+	computerChoice = "paper";
+} else {
+	computerChoice = "scissors";
+} console.log("Computer: " + computerChoice);
+/* 
+Both choices are the same!
+Now comes the fun part! We need to create a function. It will take two parameters (ie. the two choices made) and then return the winning choice.
+
+When programming a game like this, you have to first figure out all the various outcomes. One outcome is that the choice the user makes is equal to the choice the computer makes.
+
+Instructions
+We carried over the code from the previous section, but it is a comment. Leave it there for now.
+Below the comment, declare a function called compare.
+It takes two parameters, choice1 and choice2.
+Inside the function, write an if statement. If choice1 === choice2, then return "The result is a tie!"
+*/
+
+var userChoice = prompt("Do you choose rock, paper or scissors?");
+var computerChoice = Math.random();
+if (computerChoice < 0.34) {
+	computerChoice = "rock";
+} else if(computerChoice <= 0.67) {
+	computerChoice = "paper";
+} else {
+	computerChoice = "scissors";
+} console.log("Computer: " + computerChoice);
+
+
+var compare = function ( choice1, choice2 ) {
+    if(choice1 === choice2)
+    {
+       return ("The result is a tie!");
+    }
+};
+
+console.log(compare(userChoice, computerChoice));
+
+/*
+What if choice1 is rock?
+You're doing great! Now we consider the other scenarios. Let's break the problem down a little. What if choice1 is "rock"? Given choice1 is "rock",
+
+a. if choice2 === "scissors", then "rock" wins.
+b. if choice2 === "paper", then "paper" wins.
+
+How do we structure this? It's a bit different from what we have already seen. We will first have an if statement. And then the code inside that if statement will be... another if statement!
+
+Instructions
+Let's code our outline from above:
+
+Inside the compare() function under the existing code, write an else if statement where the condition is choice1 === "rock".
+Inside this else if statement, write an if / else statement. If choice2 === "scissors", return "rock wins". Else, return "paper wins".
+*/
+
+var userChoice = prompt("Do you choose rock, paper or scissors?");
+var computerChoice = Math.random();
+if (computerChoice < 0.34) {
+	computerChoice = "rock";
+} else if(computerChoice <= 0.67) {
+	computerChoice = "paper";
+} else {
+	computerChoice = "scissors";
+} console.log("Computer: " + computerChoice);
+
+
+var compare = function ( choice1, choice2 ) {
+    if(choice1 === choice2)
+    {
+       return ("The result is a tie!");
+    }
+    if(choice1 === "rock")
+    {
+        if (choice2 === "scissors") {
+            return "rock wins";
+        } else {
+            return "paper wins";
+        }
+    }
+};
+
+console.log(compare(userChoice, computerChoice));
+
+/*
+What if choice1 is scissors?
+Lastly, what if choice1 is "scissors"? Given choice1 is "scissors",
+
+a. if choice2 === "rock", then "rock" wins.
+b. if choice2 === "paper", then "scissors" wins.
+
+Instructions
+Under your old code, use the same structure as the past two exercises and finish off your function.
+We need to use the variables userChoice and computerChoice. Uncomment the first lines of the code by deleting  on line 1 and  on line 9, the variables are now active and can be called.
+Call your function and pass in userChoice and computerChoice as your two arguments.
+Press Save & Submit Code and your game should work! Congratulations!
+*/
+
+var userChoice = prompt("Do you choose rock, paper or scissors?");
+var computerChoice = Math.random();
+if (computerChoice < 0.34) {
+	computerChoice = "rock";
+} else if(computerChoice <= 0.67) {
+	computerChoice = "paper";
+} else {
+	computerChoice = "scissors";
+} console.log("Computer: " + computerChoice);
+
+
+var compare = function ( choice1, choice2 ) {
+    if(choice1 === choice2)
+    {
+       return ("The result is a tie!");
+    }
+    if (choice1 === "rock")
+    {
+        if (choice2 === "scissors") {
+            return "rock wins";
+        } else {
+            return "paper wins";
+        }
+    }
+    else if (choice1 === "scissors")
+    {
+        if (choice2 === "rock") {
+            return "rock wins";
+        } else {
+            return "scissors wins";
+        }
+    }
+};
+
+console.log(compare(userChoice, computerChoice));
+
+/*
+Next Steps
+Congratulations on making your awesome game! But now comes the best bit. You have the skills to build a game of your own design! Below are some ideas:
+
+What if a user makes an inappropriate choice like 'dog'? How can we extend the function to handle that?
+
+What if players in the game could also choose Rope in this game?
+
+In this version, if both players make the same choice, the game returns a tie. What if the game didn't end there but instead asked both players for new choices?
+
+Instructions
+Why not put the skills you've learned in this project to make your own game? Enjoy!
+*/
+
+var userChoice = prompt("Do you choose rock, paper or scissors?");
+var computerChoice = Math.random();
+if (computerChoice < 0.34) {
+	computerChoice = "rock";
+} else if(computerChoice <= 0.67) {
+	computerChoice = "paper";
+} else {
+	computerChoice = "scissors";
+} console.log("Computer: " + computerChoice);
+
+
+var compare = function ( choice1, choice2 ) {
+    if(choice1 === choice2)
+    {
+       return ("The result is a tie!");
+    }
+    if (choice1 === "rock")
+    {
+        if (choice2 === "scissors") {
+            return "rock wins";
+        } else {
+            return "paper wins";
+        }
+    }
+    else if (choice1 === "scissors")
+    {
+        if (choice2 === "rock") {
+            return "rock wins";
+        } else {
+            return "scissors wins";
+        }
+    }
+    else if (choice1 === "paper")
+    {
+        if (choice2 === "rock") {
+            return "rock wins";
+        } else {
+            return "paper wins";
+        }
+    }
+    else
+    {
+        return("You have chosen a wrong choice");
+    }
+};
+
+console.log(compare(userChoice, computerChoice));
+
+/*
+
+Why use for loops?
+We are learning how to program because we don't want to do boring, repetitive work! The computer should do that.
+
+This first exercise is a good example of exactly why you want to learn for loops.
+
+Use five console.log statements to print out the numbers 1 to 5.
+Try not getting angry at me for this annoying exercise.
+Head over to the next exercise to see how we can use for loops to do this task more efficiently.
+
+*/
+
+console.log(1);
+console.log(2);
+console.log(3);
+console.log(4);
+console.log(5);
+
+/*
+First for loop
+Instead of manually typing in console.log five times, we can use a for loop to do this. The aim of this exercise is just to show you how a for loop looks, and demonstrate how useful it is. Subsequent exercises will
+
+a. walk you through the syntax bit by bit
+b. explain how the computer thinks as it executes a for loop.
+
+We initially focus on using for loops just to count numbers to keep things simple. But by section 3, we will show you how to do more fancy things!
+
+Instructions
+The for loop in the code will print out 1 to 5 and use far less code than you used in the previous exercise.
+Change the 6 to 11 and press Save & Submit Code. This will see the computer print out 1 to 10!
+
+*/
+
+// Example of a for loop:
+
+ // Example of a for loop:
+    
+    for (var counter = 1; counter < 11; counter++) {
+    	console.log(counter);
+    }
+
+/*
+Starting the for loop
+Congratulations! You've just run your first for loop. But what you're probably really keen to do is write your own for loop. Below is the general syntax of the for loop. We want to focus on the first line in the next few exercises.
+
+Syntax
+
+for (var i = 1; i < 11; i = i + 1) {
+     your code here 
+}
+Every for loop makes use of a counting variable. Here, our variable is called i (but it can have any name). The variable has many roles. The first part of the for loop tells the computer to start with a value of 1 for i. It does this by declaring the variable called i and giving it a value of 1.
+
+When the for loop executes the code in the code block—the bit between { }—it does so by starting off where i = 1.
+
+Instructions
+This for loop starts off at 1 and will end at 10.
+Change the for loop such that it will start off at 5!
+*/
+
+
+/*
+Ending the for loop
+We know how to control where the for loop starts. How do we control where it ends? Well, the second part of the for loop determines that.
+
+Syntax
+
+    for (var i = 1; i < 11; i = i + 1) {
+        code code code; 
+    }
+Here, this for loop will keep running until i = 10 ( i.e. while i < 11). So when i = 2, or i = 9, the for loop will run. But once i is no longer less than 11, the loop will stop.
+
+Instructions
+We know this for loop counts from 1 to 10.
+Change this for loop such that it starts at 4.
+Change this for loop such that it counts up to and including 23. ( i.e. we do NOT want 24 to be printed out!)
+Run your for loop and see it count from 4 to 23!
+?
+
+*/
+
+// Edit this for loop
+
+for (var i = 4; i <= 23; i = i + 1) {
+	console.log(i);
+}
+
+/*
+Controlling the for loop
+We can now control where the for loop starts and ends. What about controlling what happens in between?
+
+The examples we've looked at have used i = i + 1. This has meant we have incremented (increased) the variable i by 1 each time.
+
+Rules to learn
+
+a. A more efficient way to code to increment up by 1 is to write i++.
+b. We decrement down by 1 by writing i--.
+c. We can increment up by any value by writing i += x, where x is how much we want to increment up by. e.g., i += 3 counts up by 3s.
+d. We can decrement down by any value by writing i -= x. (See the Hint for more.)
+e. Be very careful with your syntax—if you write a loop that can't properly end, it's called an infinite loop. It will crash your browser!
+
+Instructions
+This code counts every number from 0 to 35.
+Make it start counting from 5. Please!
+Stop the counting when it prints out 50.
+Only count every fifth number. So we want to increment i by 5.
+*/
+
+// Edit this for loop!
+
+for (var i = 5; i <= 50; i+=5) {
+	console.log(i);
+}
+
+ /*
+How does it work?
+We've gone through the three bits of syntax for a for loop. But how exactly does it work? Let's imagine the steps the computer takes to run the for loop on the right.
+
+It starts off with i = 2
+It then asks: Is i currently less than 13? Because i = 2, this is true and we continue.
+We do NOT increment now. Instead, if the condition is met, we run the code block.
+Here, the code block prints out the value of i. It is currently 2 so 2 will be printed out.
+Once the code block is finished, the for loop then increments / decrements. Here, we add 1.
+Now i = 3. We check if it is less than 13. If it is true, we run the code block.
+The code block runs, and then we increment.
+We repeat these steps until the condition i < 13 is no longer true.
+Instructions
+Make the computer start counting at 8.
+Keep counting while i < 120.
+Count up by increments of 12.
+Remember, if you accidentally make a loop that never ends, your browser will crash!
+ */
+
+ // Example for loop
+
+for (var i = 8 ; i < 120; i+=12) {
+	console.log(i);
+}
+
+/*
+Practice counting down
+for loops only run when the condition is true.
+
+Do not run the code without changing it!
+
+It is important that there is a way for the for loop to end. If the for loop is always going to be true, then you will be stuck in an infinite loop and your browser will crash! Look at the code. It is bad.
+
+a. It begins at i = 1. 
+b. It will keep going as long as i >= 1.
+c. Because now i = 1, the code will run.
+
+d. We increment i by 1 and now i = 2. This satisfies the condition. We run the code. 
+e. Increment i by 1 and now i = 3. This satisfies the condition that i >= 1. We run the code.
+f. We will keep incrementing the code up by 1. It will always satisfy the condition. The loop NEVER ends. This will crash your computer!
+
+Instructions
+Change this code such that it starts counting from 10.
+We want it to stop once it gets to 0.
+We want it to count down by 1.
+In the end, the numbers 10..0 inclusive, should be printed.
+*/
+
+// Example of infinite loop. THIS WILL CRASH YOUR
+// BROWSER. Don't run the code without changing it!
+
+for (var i = 1; i >= 1; i++) {
+	console.log(i);
+}
+
+
+
+for (var i = 10; i >= 0; i--) {
+	console.log(i);
+}
+
+/*
+Last practice for loop
+You have a great handle on for loops now! This will be the last practice one before we look at cool ways to use them.
+
+The next exercise introduces you to arrays. So instead of just counting numbers up and down, we can make the computer do many more interesting things with loops.
+
+Instructions
+Once more, for practice: write a for loop that gets the computer to count down from 100 until 0 by 5. This time, make sure not to print 0.
+*/
+
+// Write your very own for loop!
+for (var i=100; i>0; i-=5)
+{
+    console.log(i);
+}
+
+/*
+Meet arrays
+Variables can store numbers or strings. But so far, we've only been able to store ONE number or ONE string. Good thing we have arrays. Arrays:
+
+a. store lists of data
+b. can store different data types at the same time
+c. are ordered so the position of each piece of data is fixed
+
+Example:
+
+var names = ["Mao","Gandhi","Mandela"];
+
+var sizes = [4, 6, 3, 2, 1, 9];
+
+var mixed = [34, "candy", "blue", 11];
+Syntax:
+var arrayName = [data, data, data];
+
+Any time you see data surrounded by [ ], it is an array.
+
+Instructions
+Make your own array called junk. Put 4 bits of data in it (first 2 strings, then 2 numbers).
+
+Declare it using var.
+Put [ ] around your data.
+Separate each bit of data with a comma.
+End it with a semi-colon.
+Use console.log to print out junk.
+*/
+
+var junk = ["five","two",5,2];
+console.log(junk);
+
+/*
+Array positions
+It's nice that we can put a list of data into an array. But now we need to learn how to get access to the data inside the array.
+
+The position of things in arrays is fixed. So we just need to know the array name (here, it is junkData), and the position of the data we want, and we're done.
+
+Small complication: the position (or the index) of each bit of data is counted starting from 0, not 1.
+
+First element in the array: junkData[0]
+Third element in the array: junkData[2]
+Arrays have 0-based indexing, so we start counting the positions from 0.
+
+Instructions
+Print out the fourth element of the array. 
+1. Start with figuring out how to express what the fourth element in the array is.
+2. Then use console.log() to print things out!
+*/
+
+// Practice array!
+
+var junkData = ["Eddie Murphy", 49, "peanuts", 31];
+console.log(junkData[3]);	
+
+/*
+Loops and arrays I
+Awesome job! You've now learned about arrays, and how to access one element of the array. But what if there were 100 elements in the array?
+
+For arrays, a useful way to systematically access every element in the array is to use a for loop!
+
+How does it work?
+
+1. Line 3 declares the array. It has 4 elements.
+2. We then start the for loop on line 5.
+3. We see i starts off at value 0. 
+4. The for loop runs until i < 4 (because cities.length equals 4. The array cities has 4 elements in it; see the Hint for more.)
+5. We will increment i by 1 each time we loop over.
+6. We print out cities[0], which is "Melbourne".
+7. We then start the loop again. Except now i = 1. 
+8. It will print out cities[1], which is "Amman". 
+9. This continues until i is no longer less than cities.length.
+
+Instructions
+Change the elements in the cities array. You can put in as many elements as you like.
+Run the for loop and see them all printed out!
+*/
+
+// Let's print out every element of an array using a for loop
+
+var cities = ["Melbourne", "Amman", "Helsinki", "NYC"];
+
+for (var i = 0; i < cities.length; i++) {
+    console.log("I would like to visit " + cities[i]);
+}
+
+// Let's print out every element of an array using a for loop
+
+var cities = ["Melbourne", "Amman", "Helsinki", "NYC","Kolkata","MUmbai"];
+
+for (var i = 0; i < cities.length; i++) {
+    console.log("I would like to visit " + cities[i]);
+}
+
+/*
+Loops and arrays II
+It's time for you to write your own array and loop over the array. Remember to:
+
+Put commas between each element in the array.
+Put semi-colons between each bit of the for loop.
+We suggest you use i as the iterator.
+Beware of infinite loops!
+Enjoy yourself while smashing through this coding!
+Instructions
+Create an array called names filled with 5 names.
+Write a for loop that prints "I know someone called " followed by names[i]. Make sure there's a space between "called" and the name!
+Run your code and the five sentences should print out.
+Click "Stuck? Get a hint!" for an example of how to write a for loop.
+*/
+
+/*
+Loops and arrays II
+It's time for you to write your own array and loop over the array. Remember to:
+
+Put commas between each element in the array.
+Put semi-colons between each bit of the for loop.
+We suggest you use i as the iterator.
+Beware of infinite loops!
+Enjoy yourself while smashing through this coding!
+Instructions
+Create an array called names filled with 5 names.
+Write a for loop that prints "I know someone called " followed by names[i]. Make sure there's a space between "called" and the name!
+Run your code and the five sentences should print out.
+Click "Stuck? Get a hint!" for an example of how to write a for loop.
+*/
+
+// Click on "Stuck? Get a hint!" if you get stuck!
+
+var names = ["Ram","Krishna","Parashuram","Buddha","Baman"];
+
+for (var i=0; i<names.length; i++)
+{
+    console.log("I know someone called " + names[i]);
+}
+
+
+/* -------------------  Search Text for Your Name -----------------------*/
+
+/*
+What you'll be building
+In this project, you'll be writing a short program that checks a block of text for your name.
+
+Specifically, it will check the text for the first letter of your name, then push (add) the number of characters equal to your name's length to an array. By inspecting the array, you'll be able to see if your name was mentioned!
+
+Once you've got the hang of loops, arrays, and if statements, we'll talk about ways this project could be improved.
+
+Instructions
+Some of this code will be new to you, but don't worry—we'll go through it step-by-step. Ready? Click Save & Submit Code to begin!
+*/
+
+/*jshint multistr:true */
+
+text = "Blah blah blah blah blah blah Eric \
+blah blah blah Eric blah blah Eric blah blah \
+blah blah blah blah blah Eric";
+
+var myName = "Eric";
+var hits = [];
+
+// Look for "E" in the text
+for(var i = 0; i < text.length; i++) {
+	if (text[i] === "E") {
+		// If we find it, add characters up to
+		// the length of my name to the array
+		for(var j = i; j < (myName.length + i); j++) {
+			hits.push(text[j]);
+		}
+	}
+}
+
+if (hits.length === 0) {
+	console.log("Your name wasn't found!");
+} else {
+	console.log(hits);
+}
+
+/*
+Declare your variables
+We'll start by declaring the three variables we'll be using: text, myName, and hits.
+
+Since text could be quite long, you can use a backslash (\) at the end of each line to make your string "wrap" to the next line, like this:
+
+var text = "Hey, how are you \
+doing? My name is Emily.";
+In this way, using backlashes (\) is useful because you can avoid really long lines!
+
+You can ignore the /*jshint... line for now. All that does is tell the console to stop worrying about our use of backslash characters for wrapping long lines of text.
+
+Instructions
+Declare and set the following three variables:
+
+text, and make it a string containing some text. Place your name in there a couple of times!
+myName, and make it a string containing just your name.
+hits, and make it an empty array.
+Click "Stuck? Get a hint!" if you want to look at examples for declaring and setting variables.
+
+Your second "for" loop
+Okay! Last loopy step: add another for loop, this time inside the body of your if statement (between the if's {}s).
+
+This loop will make sure each character of your name gets pushed to the final array. The if statement says: "If we find the first letter of the name, start the second for loop!" This loop says: "I'm going to add characters to the array until I hit the length of the user's name." So if your name is 11 letters long, your loop should add 11 characters to hits if it ever sees the first letter of myName in text.
+
+For your second for loop, keep the following in mind:
+
+First, you'll want to set your second loop's iterator to start at the first one, so it picks up where that one left off. If your first loop starts with
+
+for(var i = 0; // rest of loop setup
+your second should be something like
+
+for(var j = i; // rest of loop setup
+Second, think hard about when your loop should stop. Check the Hint if you get stuck!
+
+Finally, in the body of your loop, have your program use the .push() method of hits. Just like strings and arrays have a .length method, arrays have a .push() method that adds the thing between parentheses to the end of the array. For example,
+
+newArray = [];
+newArray.push('hello');
+newArray[0];   // equals 'hello'
+Instructions
+Okay! Go ahead and add that second for loop inside the body of your if statement.
+*/
+
+var text = "Hi This is Subhodeep Majumder. I have my name Subhodeep Majumder from my father. The name Subhodeep is the actual name" ;
+
+var myName = "Subhodeep Majumder";
+var hits = [];
+
+for( var i = 0; i < text.length; i++)
+{
+    if(text[i] === "S")
+     {
+        for(var j=i; j < (myName.length + i); j++)
+         {
+             hits.push(text[j]);
+         }
+         
+      }
+}
+
+/*
+Log it!
+Perfect! You've now got the engine of your search program running. It will:
+
+Loop through the array,
+Compare each letter to the first letter of your name, and if it sees that letter:
+It will push that letter and all the letters that follow it to an array, stopping when the number of letters it pushes are equal to the number of letters in your name.
+*/
+
+/*jshint multistr:true */
+
+var text = "Hi This is Subhodeep Majumder. I have my name Subhodeep Majumder from my father. The name Subhodeep is the actual name" ;
+
+var myName = "Subhodeep";
+var hits = [];
+
+for( var i = 0; i < text.length; i++)
+{
+    if(text[i] === "S")
+     {
+        for(var j=i; j < (myName.length + i); j++)
+         {
+             hits.push(text[j]);
+         }
+         
+      }
+}
+
+if(hits.length == 0)
+{
+    console.log("Your name wasn't found!");
+}
+else
+{
+    console.log(hits);    
+}
+
+/*
+While we're at it
+Great work with for loops! As a reminder, for loop syntax looks like this:
+
+for (var i = start; i < end; i++) {
+  // do something
+}
+The counter variable i starts at "start", and stops looping when it reaches "end."
+
+But what if you didn't know ahead of time when to stop looping? Say, for example, you wanted to keep choosing playing cards from a deck until you get a spade. You don't know how many cards you'll need to choose, so a for loop won't work.
+
+In situations like these where you don't know in advance when to stop looping, we can use a while loop.
+
+Instructions
+Check out the while loop in the editor. Can you guess what it will do? Hit "Save & Submit Code" when you think you know! (The answer is in the Hint.)
+
+Don't worry about the Math.floor bit for now—we'll explain it soon!
+
+?
+
+*/
+
+var coinFace = Math.floor(Math.random() * 2);
+console.log(coinFace);
+
+while(coinFace === 0){
+	console.log("Heads! Flipping again...");
+	var coinFace = Math.floor(Math.random() * 2);
+}
+console.log("Tails! Done flipping.");
+
+/*
+While we're at it
+Great work with for loops! As a reminder, for loop syntax looks like this:
+
+for (var i = start; i < end; i++) {
+  // do something
+}
+The counter variable i starts at "start", and stops looping when it reaches "end."
+
+But what if you didn't know ahead of time when to stop looping? Say, for example, you wanted to keep choosing playing cards from a deck until you get a spade. You don't know how many cards you'll need to choose, so a for loop won't work.
+
+In situations like these where you don't know in advance when to stop looping, we can use a while loop.
+
+Instructions
+Check out the while loop in the editor. Can you guess what it will do? Hit "Save & Submit Code" when you think you know! (The answer is in the Hint.)
+
+Don't worry about the Math.floor bit for now—we'll explain it soon!
+*/
+
+var coinFace = Math.floor(Math.random() * 2);
+console.log(coinFace);
+
+while(coinFace === 0){
+	console.log("Heads! Flipping again...");
+	var coinFace = Math.floor(Math.random() * 2);
+}
+console.log("Tails! Done flipping.");
+
+/*
+While syntax
+The while loop is ideal when you want to use a loop, but you don't know how many times you'll have to execute that loop.
+
+In the example you just saw, the computer was randomly flipping a coin: while the coin came up heads (when coinFace equalled 0), it would flip again, and it would stop flipping once it got tails (when coinFace was 1). Since the flip was random, we didn't know ahead of time how many loops we'd need.
+
+The syntax looks like this:
+
+while(condition){
+    // Do something!
+}
+As long as the condition evaluates to true, the loop will continue to run. As soon as it's false, it'll stop. (When you use a number in a condition, as we did earlier, JavaScript understands 1 to mean true and 0 to mean false.)
+
+Since you've already mastered for loops, this simpler syntax should be a breeze for you.
+
+Instructions
+Try it yourself—complete the while loop in the editor so it will print out "I'm learning while loops!". Do this by adding the condition between the parentheses—don't change line 5, or you could get an infinite loop!
+*/
+
+var understand = true;
+
+while( understand ){
+	console.log("I'm learning while loops!");
+	understand = false;
+}
+
+/*
+Practice makes perfect
+Okay. Time for you to create a while loop from scratch!
+
+We've set up a function, loop, for you to write your while loop in, as well as created the empty loop.
+
+Remember to set up the condition you're checking outside the loop—if you do it in the loop, it will keep resetting and the loop could go on forever!
+
+Instructions
+Write a while loop that logs "I'm looping!" to the console three times. You can do this however you like, but NOT with three console.log calls. Check the Hint if you need help!
+*/
+
+//Remember to set your condition outside the loop!
+
+
+var loop = function(num){
+	while(num){
+		//Your code goes here!
+		console.log("I'm looping!");
+		num--;
+	}
+};
+
+loop(3);
+
+/*
+Solo flight
+Great work! Let's try another. This time, no help at all! (Well, some help—check the Hint if you get stuck.)
+
+Instructions
+Inside the soloLoop function, write a while loop that takes an initial condition that's true. Your loop should log "Looped once!" to the console, then change that initial condition to false.
+
+MAKE SURE to set your condition to false in the body of your loop. Otherwise, you'll loop forever!
+*/
+
+//Remember to make your condition true outside the loop!
+
+var soloLoop = function(){
+  //Your code goes here!
+  var value = true;
+  while(value)
+  {
+      console.log("Looped once!");
+      value = false;
+    }
+  
+};
+
+soloLoop();
+
+/*
+When to 'while' and when to 'for'
+As we mentioned, for loops are great for doing the same task over and over when you know ahead of time how many times you'll have to repeat the loop. On the other hand, while loops are ideal when you have to loop, but you don't know ahead of time how many times you'll need to loop.
+
+As you saw, however, you can combine a while loop with a counter variable to do the same kind of work a for loop does. In these cases, it's often a matter of preference.
+
+Instructions
+Write two loops in the editor: one while, one for. No restrictions on this one; just make sure your loops are syntactically correct, and be careful to avoid infinite loops!
+*/
+
+var loopCondition = false;
+
+do {
+	console.log("I'm gonna stop looping 'cause my condition is " + loopCondition + "!");	
+} while (loopCondition);
+
+/* --------------------------------   Dragon Slayer!    ----------------------------------  */
+
+/*
+What you'll be building
+Now that you know how to use while loops, we'll combine them with some other control flow statements (like if/else) to create a dragon slaying mini game.
+
+In this game, you’ll battle a dragon. It will take 4 hits to slay the dragon, and if you miss even one hit, the dragon will defeat you!
+
+Instructions
+Check out the code in the editor. Do you understand how it works? (No worries if not—we'll go through it step-by-step!)
+
+Run it a few times to see how you fare against the dragon!
+
+*/
+
+var slaying = true;
+// A bit of new math magic to calculate the odds
+// of hitting the dragon. We'll cover this soon!
+var youHit = Math.floor(Math.random() * 2);
+var damageThisRound = Math.floor(Math.random() * 5 + 1);
+console.log(youHit);
+console.log(damageThisRound);
+var totalDamage = 0;
+
+while (slaying) {
+  if (youHit) {
+    console.log("You hit the dragon and did " + damageThisRound + " damage!");
+    totalDamage += damageThisRound;
+    
+    if (totalDamage >= 4) {
+      console.log("You did it! You slew the dragon!");
+      slaying = false;
+    } else {
+      youHit = Math.floor(Math.random() * 2);
+    }
+  } else {
+    console.log("The dragon burninates you! You're toast.");
+    slaying = false;
+  }
+}
+
+/*
+Declare your variables
+All right! Let's start by declaring the variables we'll be using. We'll need:
+
+a variable to check if we're still slaying
+a variable to check if we hit the dragon
+a variable to keep track of how much damage we've dealt the dragon this round
+a variable to keep track of total damage
+Instructions
+Declare and set the following variables:
+
+slaying equal to true
+youHit to Math.floor(Math.random() * 2). This sets youHit to a random number that's either 0 (which JavaScript reads as false) or 1 (which JavaScript reads as true).
+damageThisRound to Math.floor(Math.random()*5 + 1). This sets damageThisRound to a random number that's between 1 and 5 (up to and including 5).
+totalDamage to 0
+Click on "Stuck? Get a hint!" for more details on how Math.floor(Math.random()*5 + 1) works.
+
+?
+Hint
+How does this code work?
+
+Math.floor(Math.random() * 5 + 1);
+First we use Math.random() to create a random number from 0 up to 1. For example, 0.5
+Then we multiply by 5 to make the random number from 0 up to 5. For example, 0.5 * 5 = 2.5
+Next we use Math.floor() to round down to a whole number. For example, Math.floor( 2.5 ) = 2
+Finally we add 1 to change the range from between 0 and 4 to between 1 and 5 (up to and including 5)
+*/
+
+var slaying = true;
+var myHit = Math.floor(Math.random() * 2);
+var damageThisRound = Math.floor(Math.random() * 5 + 1);
+var totalDamage = 0;
+
+
+/*
+The 'while' loop
+Awesome! Now let's add in our while loop. We want to run the whole game as long as we're trying to kill the dragon—that is, while slaying is true.
+
+When checking variables like slaying that are set to true, you don't need to write something like:
+
+while(slaying === true)
+You can just write
+
+while(slaying)
+It also helps to give your variables names that make the code look more like regular English. while(slaying) { Do this } is easy to remember because it's so close to everyday speech!
+
+Instructions
+Create a while loop that only executes when slaying is true. For this exercise, set slaying to false in the body of the loop. (We want to make sure the loop can exit—no infinite loops for us!)
+*/
+
+var slaying = true;
+    var myHit = Math.floor(Math.random() * 2);
+    var damageThisRound = Math.floor(Math.random() * 5 + 1);
+    var totalDamage = 0;
+    
+    while (slaying)
+    {
+        slaying = false;    
+    }
+
+
+
+    var slaying = true;
+    var myHit = Math.floor(Math.random() * 2);
+    var damageThisRound = Math.floor(Math.random() * 5 + 1);
+    var totalDamage = 0;
+    
+    while (slaying)
+    {
+        if (myHit) {
+            console.log("Congratulation you have hit the dragon");
+            slaying = false;
+        }
+        else  {
+           console.log("Dragon beat you");
+           slaying = false;
+        }    
+        
+         
+    }
